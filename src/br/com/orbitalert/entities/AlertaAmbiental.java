@@ -31,7 +31,7 @@ public class AlertaAmbiental extends Alerta {
 
     @Override
     public String gerarNotificacao() {
-        return String.format("🛰️ [%s] %s detectado(a) em %s — Risco %.1f%%",
+        return String.format(" %s %s detectado(a) em %s — Risco %.1f%%",
                 getNivelSeveridade(), this.tipo, getMunicipio(), getIndiceRisco());
     }
 

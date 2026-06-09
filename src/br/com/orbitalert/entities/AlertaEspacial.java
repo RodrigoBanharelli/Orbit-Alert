@@ -12,13 +12,13 @@ public class AlertaEspacial extends Alerta {
         this.altitudeKm = altitudeKm;
     }
 
-    // --- GETTERS E SETTERS ---
+    // Get e set
     public String getOrigemSatelite() { return origemSatelite; }
     public void setOrigemSatelite(String origemSatelite) { this.origemSatelite = origemSatelite; }
     public double getAltitudeKm() { return altitudeKm; }
     public void setAltitudeKm(double altitudeKm) { this.altitudeKm = altitudeKm; }
 
-    // --- OVERRIDES ---
+    // Overrtide
     @Override
     public String getCategoria() {
         return "ESPACIAL";
@@ -35,7 +35,7 @@ public class AlertaEspacial extends Alerta {
 
     @Override
     public String gerarNotificacao() {
-        return String.format("🚀 [%s] Anomalia espacial detectada por %s a %.1f km — Risco %.1f%% sobre %s",
+        return String.format(" %s Anomalia espacial detectada por %s a %.1f km — Risco %.1f%% sobre %s",
                 getNivelSeveridade(), this.origemSatelite, this.altitudeKm, getIndiceRisco(), getMunicipio());
     }
 

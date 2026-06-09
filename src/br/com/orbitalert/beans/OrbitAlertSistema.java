@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-// Camada de gerência (bean) — controla o CRUD e as regras de negócio dos alertas.
+// Camada para ter o controle
 public class OrbitAlertSistema {
 
     private List<Alerta> baseDeAlertas;
@@ -28,7 +28,7 @@ public class OrbitAlertSistema {
         baseDeAlertas.add(new AlertaEspacial(proximoId++, "Brasília - DF", "Amazonia-1", 700.0, 72.0));
     }
 
-    // CREATE — registra novo alerta ambiental. Retorna true se deu certo, false se os dados forem inválidos.
+    // registra novo alerta ambiental. Retorna true se deu certo, false se os dados forem inválidos.
     public boolean registrarAlertaAmbiental(String municipio, TipoAlerta tipo, double risco) {
         // Se os campos comuns forem inválidos ou o tipo estiver nulo, cancela.
         if (!camposValidos(municipio, risco) || tipo == null) {
@@ -38,7 +38,7 @@ public class OrbitAlertSistema {
         return true;
     }
 
-    // CREATE — registra novo alerta espacial. Retorna true se deu certo, false se inválido.
+    //  registra novo alerta espacial. Retorna true se deu certo, false se inválido.
     public boolean registrarAlertaEspacial(String municipio, String satelite, double altitude, double risco) {
         // Valida campos comuns + satélite preenchido + altitude positiva.
         if (!camposValidos(municipio, risco) || satelite == null || satelite.trim().isEmpty() || altitude <= 0) {
@@ -48,7 +48,7 @@ public class OrbitAlertSistema {
         return true;
     }
 
-    // Método auxiliar: devolve true se município e risco forem válidos.
+    // Método 1: devolve true se município e risco forem válidos.
     private boolean camposValidos(String municipio, double risco) {
         if (municipio == null || municipio.trim().isEmpty()) {
             return false;
@@ -59,7 +59,7 @@ public class OrbitAlertSistema {
         return true;
     }
 
-    // READ — todos os alertas.
+    //  — todos os alertas.
     public List<Alerta> obterTodosAlertas() {
         return baseDeAlertas;
     }
@@ -95,7 +95,7 @@ public class OrbitAlertSistema {
         return null;
     }
 
-    // UPDATE — altera o índice de risco de um alerta pelo ID. Retorna true se conseguiu.
+    //  — altera o índice de risco de um alerta pelo ID. Retorna true se conseguiu.
     public boolean atualizarRisco(int id, double novoRisco) {
         Alerta alvo = buscarPorId(id);
         // Se não achou o ID ou o risco está fora de 0..100, falha.

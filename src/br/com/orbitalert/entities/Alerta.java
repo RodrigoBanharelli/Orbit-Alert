@@ -10,22 +10,22 @@ public abstract class Alerta implements Notificavel {
     private int id;
     private String municipio;
     private double indiceRisco;
-    private LocalDateTime dataRegistro;
+    private LocalDateTime dataregistro;
 
     public Alerta(int id, String municipio, double indiceRisco) {
         this.id = id;
         this.municipio = municipio;
         this.indiceRisco = indiceRisco;
-        this.dataRegistro = LocalDateTime.now();
+        this.dataregistro = LocalDateTime.now();
     }
 
-    // Métodos abstratos: cada subclasse define seu próprio comportamento (Polimorfismo).
+    // Método1 : cada subclasse define seu próprio comportamento
     public abstract String getCategoria();
     public abstract String getNivelSeveridade();
 
     public String getDataFormatada() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        return dataRegistro.format(formatter);
+        return dataregistro.format(formatter);
     }
 
     // getter e setter
@@ -46,7 +46,7 @@ public abstract class Alerta implements Notificavel {
         this.indiceRisco = indiceRisco; }
 
     public LocalDateTime getDataRegistro() {
-        return dataRegistro; }
+        return dataregistro; }
 
 
     @Override

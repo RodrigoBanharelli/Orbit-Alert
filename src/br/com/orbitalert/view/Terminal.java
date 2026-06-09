@@ -22,7 +22,7 @@ public class Terminal {
         int opcao = 0;
         do {
             System.out.println("\n                                       ️  ");
-            System.out.println("    ORBIT ALERT - MONITORAMENTO ORBITAL ");
+            System.out.println("   ORBIT ALERT - MONITORAMENTO ORBITAL ");
             System.out.println("                                       ️    ");
             System.out.println("1. Listar TODOS os alertas");
             System.out.println("2. Listar apenas alertas CRÍTICOS");
@@ -37,17 +37,17 @@ public class Terminal {
             System.out.print("Escolha uma opção: ");
             try {
                 opcao = Integer.parseInt(scanner.nextLine());
-                processarEscolha(opcao);
+                escolha(opcao);
             } catch (NumberFormatException e) {
-                System.out.println("\n[ERRO] Por favor, digite um número válido.");
+                System.out.println("\nErro! Por favor, digite um número válido.");
             }
         } while (opcao != 0);
     }
 
-    private void processarEscolha(int opcao) {
+    private void escolha(int opcao) {
         switch (opcao) {
             case 1: imprimirPainel(model.obterTodosAlertas(), "TODOS OS ALERTAS REGISTRADOS"); break;
-            case 2: imprimirPainel(model.obterAlertasCriticos(), "🚨 ALERTAS CRÍTICOS 🚨"); break;
+            case 2: imprimirPainel(model.obterAlertasCriticos(), "  ALERTAS CRÍTICOS  "); break;
             case 3: telaBuscarPorMunicipio(); break;
             case 4: telaRegistrarAmbiental(); break;
             case 5: telaRegistrarEspacial(); break;
@@ -68,7 +68,7 @@ public class Terminal {
         }
         for (Alerta a : alertas) {
             System.out.println(a.toString());
-            System.out.println("   ↳ " + a.gerarNotificacao());
+            System.out.println("   " + a.gerarNotificacao());
         }
     }
 
@@ -81,7 +81,7 @@ public class Terminal {
         try {
             int opTipo = Integer.parseInt(scanner.nextLine());
             if (opTipo < 1 || opTipo > 7) {
-                System.out.println("[ERRO] Tipo inválido.");
+                System.out.println("Erro! Tipo inválido.");
                 return;
             }
             TipoAlerta tipo = TipoAlerta.values()[opTipo - 1];
@@ -90,12 +90,12 @@ public class Terminal {
             // O bean devolve true (deu certo) ou false (dados inválidos).
             boolean sucesso = model.registrarAlertaAmbiental(municipio, tipo, risco);
             if (sucesso) {
-                System.out.println("[SUCESSO] Alerta ambiental registrado.");
+                System.out.println("Sucesso! Alerta ambiental registrado.");
             } else {
-                System.out.println("[FALHA] Dados inválidos (verifique município e risco de 0 a 100).");
+                System.out.println("Falha! Dados inválidos (verifique município e risco de 0 a 100).");
             }
         } catch (NumberFormatException e) {
-            System.out.println("[ERRO] Digite valores numéricos válidos.");
+            System.out.println("Erro! Digite valores numéricos válidos.");
         }
     }
 
@@ -113,12 +113,12 @@ public class Terminal {
             // O bean devolve true (deu certo) ou false (dados inválidos).
             boolean sucesso = model.registrarAlertaEspacial(municipio, satelite, altitude, risco);
             if (sucesso) {
-                System.out.println("[SUCESSO] Alerta espacial registrado.");
+                System.out.println("Sucesso! Alerta espacial registrado.");
             } else {
-                System.out.println("[FALHA] Dados inválidos (verifique satélite, altitude e risco de 0 a 100).");
+                System.out.println("Falha! Dados inválidos (verifique satélite, altitude e risco de 0 a 100).");
             }
         } catch (NumberFormatException e) {
-            System.out.println("[ERRO] Digite valores numéricos válidos.");
+            System.out.println("Erro! Digite valores numéricos válidos.");
         }
     }
 
@@ -139,24 +139,24 @@ public class Terminal {
             // O bean devolve true se atualizou, false se o ID não existe ou o risco é inválido.
             boolean sucesso = model.atualizarRisco(id, novoRisco);
             if (sucesso) {
-                System.out.println("[SUCESSO] Risco atualizado.");
+                System.out.println("Sucesso! Risco atualizado.");
             } else {
-                System.out.println("[FALHA] ID não encontrado ou risco fora de 0 a 100.");
+                System.out.println("Falha! ID não encontrado ou risco fora de 0 a 100.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("[ERRO] Valores numéricos inválidos.");
+            System.out.println("Erro! Valores numéricos inválidos.");
         }
     }
 
     private void telaRemover() {
-        System.out.println("\n--- REMOVER ALERTA ---");
+        System.out.println("\n    REMOVER ALERTA    ");
         try {
             System.out.print("ID do alerta a remover: ");
             int id = Integer.parseInt(scanner.nextLine());
             boolean removeu = model.removerPorId(id);
-            System.out.println(removeu ? "[SUCESSO] Alerta removido." : "[FALHA] ID não encontrado.");
+            System.out.println(removeu ? "Sucesso! Alerta removido." : "Falha! ID não encontrado.");
         } catch (NumberFormatException e) {
-            System.out.println("[ERRO] ID deve ser um número.");
+            System.out.println("Erro! ID deve ser um número.");
         }
     }
 
